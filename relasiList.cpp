@@ -177,4 +177,77 @@ int countChildOfParent(List_relasi LR, addressPenulis P) {
     }
 
     return count;
+    
+}
+
+int countParentOfChild(List_relasi LR, addressJurnal child) {
+    int jum = 0;
+    address_relasi P = LR.first; 
+    while (P != NULL) {
+        if (P->child == child) { 
+            jum++;
+        }
+        P = P->next;
+    }
+    return jum;
+}
+
+int countChildNoParent(ListJurnal LJ, List_relasi LR) {
+    int jum = 0;
+    addressJurnal P = LJ.first; 
+    while (P != NULL) {
+        address_relasi Q = LR.first;
+        bool ketemu = false;
+        while (Q != NULL) {
+            if (Q->child == P) {
+                ketemu = true;
+            }
+            Q = Q->next;
+        }
+        if (ketemu == false) {
+            jum++;
+        }
+        P = P->next;
+    }
+    return jum;
+}
+int countParentNoChild(ListPenulis LP, List_relasi LR) {
+    int jum = 0;
+    addressPenulis P = LP.first; 
+    while (P != NULL) {
+        address_relasi Q = LR.first;
+        bool ketemu = false;
+        while (Q != NULL) {
+            if (Q->parent == P) {
+                ketemu = true;
+            }
+            Q = Q->next;
+        }
+        if (ketemu == false) {
+            jum++;
+        }
+        P = P->next;
+    }
+    return jum;
+}
+
+void editRelasi(List_relasi &LR, addressPenulis parentLama, addressJurnal childLama, addressPenulis parentBaru, addressJurnal childBaru) {
+    address_relasi P = LR.first;
+    bool found = false;
+    
+    while (P != NULL && !found) {
+        if (P->parent == parentLama && P->child == childLama) {
+            found = true;
+        } else {
+            P = P->next;
+        }
+    }
+
+    if (found) {
+        if (parentBaru != NULL) P->parent = parentBaru;
+        if (childBaru != NULL) P->child = childBaru;
+        cout << "Relasi berhasil diubah." << endl;
+    } else {
+        cout << "Relasi lama tidak ditemukan." << endl;
+    }
 }

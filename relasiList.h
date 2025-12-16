@@ -29,5 +29,9 @@ void showParentOfChild(List_relasi LR, addressJurnal C);
 void showAllParentWithChild(ListPenulis LP, List_relasi LR);
 void showAllChildWithParent(ListJurnal LJ, List_relasi LR);
 int countChildOfParent(List_relasi LR, addressPenulis P);
+int countParentOfChild(List_relasi LR, addressJurnal child);
+int countChildNoParent(ListJurnal LJ, List_relasi LR);
+int countParentNoChild(ListPenulis LP, List_relasi LR);
+void editRelasi(List_relasi &LR, addressPenulis parentLama, addressJurnal childLama, addressPenulis parentBaru, addressJurnal childBaru);
 
 #endif

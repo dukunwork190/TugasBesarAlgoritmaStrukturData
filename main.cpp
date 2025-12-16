@@ -33,6 +33,10 @@ int main() {
         cout << "14. Show setiap parent beserta childnya\n";
         cout << "15. Show setiap child beserta parentnya\n";
         cout << "16. Hitung jumlah child dari parent tertentu\n";
+        cout << "17. Hitung jumlah parent dari child tertentu (q)\n";
+        cout << "18. Hitung child tanpa parent (r)\n";
+        cout << "19. Hitung parent tanpa child (s)\n";
+        cout << "20. Edit Relasi (t)\n";
         cout << "0. Exit\n";
         cout << "Pilih menu: ";
         cin >> menu;
@@ -200,6 +204,36 @@ int main() {
             cout << "Jumlah jurnal: " << countChildOfParent(LR, P) << endl;
         } else{
             cout << "ERROR 404 ### Input Salah ### ERROR 404" << endl << endl;
+        }
+        else if (menu == 17) {
+            string idJ;
+            cout << "Masukkan ID Jurnal: "; cin >> idJ;
+            addressJurnal J = findJurnal(LJ, idJ);
+            if (J != NULL) {
+                cout << "Jumlah Penulis: " << countParentOfChild(LR, J) << endl;
+            } else { cout << "Jurnal tidak ditemukan." << endl; }
+        }
+        else if (menu == 18) {
+            cout << "Jurnal tanpa Penulis: " << countChildNoParent(LJ, LR) << endl;
+        }
+        else if (menu == 19) {
+            cout << "Penulis tanpa Jurnal: " << countParentNoChild(LP, LR) << endl;
+        }
+        else if (menu == 20) {
+            int idP_lama, idP_baru; string idJ_lama, idJ_baru;
+            cout << "ID Penulis LAMA: "; cin >> idP_lama;
+            cout << "ID Jurnal LAMA: "; cin >> idJ_lama;
+            cout << "ID Penulis BARU (0 jika tetap): "; cin >> idP_baru;
+            cout << "ID Jurnal BARU (0 jika tetap): "; cin >> idJ_baru;
+            
+            addressPenulis P_Lama = findPenulis(LP, idP_lama);
+            addressJurnal J_Lama = findJurnal(LJ, idJ_lama);
+            addressPenulis P_Baru = (idP_baru != 0) ? findPenulis(LP, idP_baru) : P_Lama;
+            addressJurnal J_Baru = (idJ_baru != "0") ? findJurnal(LJ, idJ_baru) : J_Lama;
+
+            if (P_Lama && J_Lama && P_Baru && J_Baru) {
+                editRelasi(LR, P_Lama, J_Lama, P_Baru, J_Baru);
+            } else { cout << "Data invalid." << endl; }
         }
 
     }
