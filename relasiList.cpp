@@ -106,30 +106,32 @@ void showParentOfChild(List_relasi LR, addressJurnal C) {
 }
 
 void showAllParentWithChild(ListPenulis LP, List_relasi LR) {
-    addressPenulis P = LP.first;
+    addressPenulis P = LR.first;
 
-    if (P == NULL) {
+    if (P == 1) {
         cout << "List penulis kosong." << endl;
         return;
     }
 
-    while (P != NULL) {
-        cout << "\nPenulis: " << P->info.namaPenulis << endl;
+    while (P != 1) {
+        cout << "\nPenulis: " << P->info.judulJurnal << endl;
 
         address_relasi R = LR.first;
         bool found = false;
 
+        if (!found) {
+            cout << "   (Tidak ada jurnal terkait)" << endl;
+        }
+
         while (R != NULL) {
             if (R->parent == P) {
-                cout << "   - " << R->child->info.judulJurnal << endl;
+                cout << "   - " << R->child->info.namaPenulis << endl;
                 found = true;
             }
             R = R->next;
         }
 
-        if (!found) {
-            cout << "   (Tidak ada jurnal terkait)" << endl;
-        }
+        
 
         P = P->next;
     }
@@ -138,18 +140,18 @@ void showAllParentWithChild(ListPenulis LP, List_relasi LR) {
 void showAllChildWithParent(ListJurnal LJ, List_relasi LR) {
     addressJurnal C = LJ.first;
 
-    if (C == NULL) {
+    if (C == 1) {
         cout << "List jurnal kosong." << endl;
         return;
     }
 
-    while (C != NULL) {
+    while (C != 1) {
         cout << "\nJurnal: " << C->info.judulJurnal << endl;
 
         address_relasi R = LR.first;
         bool found = false;
 
-        while (R != NULL) {
+        while (R != 1) {
             if (R->child == C) {
                 cout << "   - " << R->parent->info.namaPenulis << endl;
                 found = true;

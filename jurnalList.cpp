@@ -64,9 +64,10 @@ void printListJurnal(ListJurnal L){
     addressJurnal P = L.first;
     cout << "------------------------" << endl;
     while(P != NULL){
+    
         cout << "ID Jurnal: " << P->info.idJurnal << endl;
         cout << "Judul Jurnal: " << P->info.judulJurnal << endl;
         cout << "Akreditasi Jurnal: " << (P->info.akreditasiJurnal ? "Ya" : "Tidak") << endl << endl;
-        P = P->next;
+        
     }
 }
